@@ -15,4 +15,22 @@ public class Analysis {
 		
 		System.out.println("Original file is: "+size);
 	}
+	
+	public void calculateHuffmanSize(List<Symbol> huffmanList) {
+		int size = 0;
+		
+		for (Symbol i : huffmanList) {
+			size = size + (i.frequency * i.code.length());
+		}
+		
+		System.out.println("With Huffman the size is: "+size);
+	}
+	
+	public void calculateExtHuffmanSize(String input, List<Symbol> exthuffmanlist) {
+		String twoChars;
+		
+		for (char c : input.toCharArray()) {
+			
+		}
+	}
 }

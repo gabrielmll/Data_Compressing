@@ -29,12 +29,6 @@ public class HuffmanCompression {
 		Collections.sort(input.input);						// Sort the input
 		CreateProbability(input.input);						// Generate the probabilities of each symbol
 		
-		for(Symbol s : input.input) {
-			System.out.println(s.symbol+": "+s.frequency+"("+s.probability+")");
-		}
-		
-		System.out.println("\n");
-		
 		// Huffman
 			if(menu == 1) {
 			frequencyTable = new ArrayList<Symbol>(input.input);		// copy of input as frequencyTable
@@ -67,6 +61,7 @@ public class HuffmanCompression {
 			for(Symbol i : extendedTable) {
 				System.out.println(i.symbol+": "+i.code+"("+i.probability+")");
 			}
+
 		}
 
 			
@@ -80,8 +75,11 @@ public class HuffmanCompression {
 		comparing.calculateOriginalSize(input.input);
 		
 		// Huffman
-		
+		if (menu == 1)
+			comparing.calculateHuffmanSize(input.input);
 		// Extended Huffman
+		if (menu == 2)
+			comparing.calculateExtHuffmanSize(input.originInput, extendedTable);
 	}
 
 		 
@@ -291,7 +289,7 @@ public class HuffmanCompression {
 	}
 
 	public static void main(String[] args) {
-		new HuffmanCompression(2);
+		new HuffmanCompression(1);
 	}
 }
 
