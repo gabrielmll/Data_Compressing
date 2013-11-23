@@ -1,0 +1,53 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Input {
+	String originInput;
+	List<Symbol> input = new ArrayList<Symbol>();
+	
+	Input() {
+		
+		originInput = CatchInput();
+		
+		HandlesOriginalInput(originInput);
+	}
+	
+	public static String CatchInput() {
+		String input = null;
+		BufferedReader in;
+		
+		System.out.println("Write a something to be compressed:");
+		
+		in = new BufferedReader(new InputStreamReader(System.in));
+		
+		try {
+			input = in.readLine();
+		}
+		catch(Exception ex) {
+			System.out.println("Error");
+		}
+		
+		return input;
+	}
+	
+	public int CheckCinList(char c, List<Symbol> list) {
+		
+	}
+	
+	public static List<Symbol> HandlesOriginalInput(String original) {
+		List<Symbol> treaty = new ArrayList<Symbol>();
+		Symbol aux;
+		
+		for (char c : original.toCharArray()) {
+			for (int i = 0; i < treaty.size(); i++) {
+
+			}
+			
+		}
+		
+		
+		return treaty;
+	}
+}

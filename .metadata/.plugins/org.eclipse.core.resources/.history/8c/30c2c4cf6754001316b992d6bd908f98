@@ -1,0 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Input {
+	List<Symbol> input = new ArrayList<Symbol>();
+}

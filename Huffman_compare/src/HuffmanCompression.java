@@ -6,7 +6,7 @@ import java.io.*;
 
 public class HuffmanCompression {
 	// General lists
-	List<Symbol> input = new ArrayList<Symbol>();				// saves the input ----------------------- Its code is created in NO-extended huffman 
+	//List<Symbol> input = new ArrayList<Symbol>();				// saves the input ----------------------- Its code is created in NO-extended huffman 
 	List<Symbol> stack;											// stack for bTree development
 	List<Symbol> bTree;											// Huffman tree
 	
@@ -18,25 +18,35 @@ public class HuffmanCompression {
 	List<Symbol> aux;
 	
 	HuffmanCompression(int menu) {
-		String alphabet = null;
+
+		Input input = new Input();
 		
-		alphabet = CatchInput();							// Capture the alphabet symbols
-		CreateTable(alphabet, input);						// Create the frequency table (saved INPUT)
-		Collections.sort(input);							// Sort the input
-		CreateProbability(input);							// Generate the probabilities of each symbol
+		
+		//String alphabet = null;
+		
+		//alphabet = CatchInput();							// Capture the alphabet symbols
+		//CreateTable(alphabet, input);						// Create the frequency table (saved INPUT)
+		Collections.sort(input.input);						// Sort the input
+		CreateProbability(input.input);						// Generate the probabilities of each symbol
+		
+		for(Symbol s : input.input) {
+			System.out.println(s.symbol+": "+s.frequency+"("+s.probability+")");
+		}
+		
+		System.out.println("\n");
 		
 		// Huffman
 			if(menu == 1) {
-			frequencyTable = new ArrayList<Symbol>(input);		// copy of input as frequencyTable
+			frequencyTable = new ArrayList<Symbol>(input.input);		// copy of input as frequencyTable
 			stack = new ArrayList<Symbol>();					// new stack list
 			bTree = new ArrayList<Symbol>();					// new bTree list
 			
 			CombiningSymbols(frequencyTable);					// Combine Symbols and generate the Stack
 			
 			CreateBTree(bTree, stack);							// Uses the stack to generate the Huffman Tree			
-			EncodeInput(input, bTree);							// Uses the bTree to encode each input symbol
+			EncodeInput(input.input, bTree);							// Uses the bTree to encode each input symbol
 			
-			for(Symbol i : input) {
+			for(Symbol i : input.input) {
 				System.out.println(i.symbol+": "+i.code+"("+i.probability+")");
 			}
 		}
@@ -46,7 +56,7 @@ public class HuffmanCompression {
 			stack = new ArrayList<Symbol>();					// new stack list
 			bTree = new ArrayList<Symbol>();					// new bTree list
 			
-			ExtendAlphabet(input, extendedTable);				// Extending input alphabet
+			ExtendAlphabet(input.input, extendedTable);				// Extending input alphabet
 			
 			aux = new ArrayList<Symbol>(extendedTable);
 			
@@ -67,7 +77,7 @@ public class HuffmanCompression {
 		Analysis comparing = new Analysis();
 		
 		// 1st original input
-		comparing.calculateOriginalSize(input);
+		comparing.calculateOriginalSize(input.input);
 		
 		// Huffman
 		
@@ -100,6 +110,7 @@ public class HuffmanCompression {
 	
 	/*
 	 * Create a frequency table based on input alphabet
+	 * 		alphabet must follow this pattern: "A:3, B:2, C:1, ... <char>:<frequency>" 
 	 */
 	public void CreateTable(String alphabet, List<Symbol> frequencyTable) {
 		String[] pieces1, pieces2;
@@ -220,11 +231,6 @@ public class HuffmanCompression {
 		if(bTree.get(1).symbol.contains(c)) {
 			while(bTree.get(i).symbol.equals(c) != true) {
 				
-/*TODO: delete this
- * 				if(bTree.get(i).symbol.equals(c))
-				
-				System.out.println("Comparing "+c+" with "+bTree.get(i).symbol);
-*/
 				if(bTree.get((2*i)).symbol.contains(c)) {
 					code = code+"0";
 					i = (2*i);
@@ -244,7 +250,7 @@ public class HuffmanCompression {
 	/*
 	 * return the summed frequencies of a list
 	 */
-	public int CountFrequency() {
+	public int CountFrequency(List<Symbol> input) {
 		int total = 0;
 		
 		for(Symbol i : input) {
@@ -258,7 +264,7 @@ public class HuffmanCompression {
 	 * Generate the probability for each alphabet symbol for this list
 	 */
 	public void CreateProbability(List<Symbol> list) {
-		int totalNum = CountFrequency();
+		int totalNum = CountFrequency(list);
 		
 		for(Symbol i : list) {
 			i.probability = (float)i.frequency / totalNum;
@@ -325,21 +331,5 @@ class Symbol implements Comparable<Symbol> {
 	public int compareTo(Symbol compareSymbol) {
 		int compareFrequency = ((Symbol) compareSymbol).getFrequency();
 		return compareFrequency - this.frequency;
-	}
-}
-
-class Analysis {
-	int originalSize = 0;
-	int huffmanSize = 0;
-	int extHuffmanSize = 0;
-	
-	public void calculateOriginalSize(List<Symbol> input) {
-		int size = 0;
-		
-		for (Symbol i : input) {
-			size = size + (8 * i.frequency);
-		}
-		
-		System.out.println("Original file is: "+size);
 	}
 }
