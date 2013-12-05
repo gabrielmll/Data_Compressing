@@ -80,19 +80,14 @@ public class HuffmanCompression {
 		// Huffman
 //		if (menu == 1)
 			System.out.println("\n\t:HUFFMAN:");
-			input.HuffmanCode = EncodeSentence(input.originInput, input.input);
-			System.out.println("Coded sentence: "+input.HuffmanCode);
+			EncodeSentence(input.originInput, input.input);
 			comparing.calculateHuffmanSize(input.input);
-			comparing.savingBitsHuff();
 			comparing.averageLengths(input.input);
 		// Extended Huffman
 //		if (menu == 2)
 			System.out.println("\n\t:EXTENDED HUFFMAN:");
-			input.ExtHuffmanCode = EncodeExtSentence(input.originInput, extendedTable);
-			System.out.println("Coded sentence: "+input.ExtHuffmanCode);
-			comparing.calculateExtHuffmanSize(input.ExtHuffmanCode);
-			comparing.savingBitsExtHuff();
-			comparing.averageExtLengths(extendedTable);
+			EncodeExtSentence(input.originInput, extendedTable);
+			comparing.calculateExtHuffmanSize(input.originInput, extendedTable);
 	}	
 	
 	/*
@@ -295,6 +290,7 @@ public class HuffmanCompression {
 			}
 		}
 		
+		System.out.println("Coded sentence: "+encodedSentence);
 		return encodedSentence;
 	}
 	/*
@@ -315,6 +311,7 @@ public class HuffmanCompression {
 			}	
 		}
 		
+		System.out.println("Coded sentence: "+encodedSentence);
 		return encodedSentence;
 	}
 

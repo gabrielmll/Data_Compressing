@@ -7,9 +7,6 @@ public class Input {
 	String originInput;
 	List<Symbol> input;
 	
-	String HuffmanCode;
-	String ExtHuffmanCode;
-	
 	Input() {
 		
 		originInput = CatchInput();

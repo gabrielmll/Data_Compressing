@@ -80,29 +80,11 @@ public class Analysis {
 		System.out.println("Average length: "+length);
 	}
 	
-	/*
-	 * Calculate saving bits and its percentage in Huffman
-	 */
 	public void savingBitsHuff() {
 		float saving;
 		float percentage;
 		
 		saving = originalSize - huffmanSize;
-		percentage = 100 * (saving / originalSize);
-		
-		System.out.println("Saving bits: "+saving+" ("+percentage+"%)");
-	}
-	
-	/*
-	 * Calculate saving bits and its percentage in Extended Huffman
-	 */
-	public void savingBitsExtHuff() {
-		float saving;
-		float percentage;
-		
-		saving = originalSize - extHuffmanSize;
-		percentage = 100 * (saving / originalSize);
-		
-		System.out.println("Saving bits: "+saving+" ("+percentage+"%)");
+		percentage = saving / originalSize;
 	}
 }

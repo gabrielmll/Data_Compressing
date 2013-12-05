@@ -91,7 +91,6 @@ public class HuffmanCompression {
 			input.ExtHuffmanCode = EncodeExtSentence(input.originInput, extendedTable);
 			System.out.println("Coded sentence: "+input.ExtHuffmanCode);
 			comparing.calculateExtHuffmanSize(input.ExtHuffmanCode);
-			comparing.savingBitsExtHuff();
 			comparing.averageExtLengths(extendedTable);
 	}	
 	

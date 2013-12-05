@@ -147,3 +147,4 @@ Caused by: java.nio.channels.UnresolvedAddressException: null
 	... 12 common frames omitted
 2013-12-05 14:53:22,921 [main] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 8
 2013-12-05 14:53:23,682 [pool-6-thread-1] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 8
+2013-12-05 19:10:44,102 [main] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 8

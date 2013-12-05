@@ -7,9 +7,6 @@ public class Input {
 	String originInput;
 	List<Symbol> input;
 	
-	String HuffmanCode;
-	String ExtHuffmanCode;
-	
 	Input() {
 		
 		originInput = CatchInput();
@@ -24,7 +21,7 @@ public class Input {
 		String input = null;
 		BufferedReader in;
 		
-		System.out.println("Write a sentence to be compressed:");
+		System.out.println("Write a something to be compressed:");
 		
 		in = new BufferedReader(new InputStreamReader(System.in));
 		
