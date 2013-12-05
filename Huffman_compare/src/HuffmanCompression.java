@@ -19,33 +19,31 @@ public class HuffmanCompression {
 	
 	HuffmanCompression(int menu) {
 
-		Input input = new Input();
-		
-		
-		//String alphabet = null;
-		
-		//alphabet = CatchInput();							// Capture the alphabet symbols
-		//CreateTable(alphabet, input);						// Create the frequency table (saved INPUT)
+		Input input = new Input();							// Collect input from keyboard. The input will ALWAYS have pair length (odd are increase with " ")
+
 		Collections.sort(input.input);						// Sort the input
 		CreateProbability(input.input);						// Generate the probabilities of each symbol
 		
 		// Huffman
-			if(menu == 1) {
+//			if(menu == 1) {
 			frequencyTable = new ArrayList<Symbol>(input.input);		// copy of input as frequencyTable
-			stack = new ArrayList<Symbol>();					// new stack list
-			bTree = new ArrayList<Symbol>();					// new bTree list
+			stack = new ArrayList<Symbol>();							// new stack list
+			bTree = new ArrayList<Symbol>();							// new bTree list
 			
-			CombiningSymbols(frequencyTable);					// Combine Symbols and generate the Stack
+			CombiningSymbols(frequencyTable);							// Combine Symbols and generate the Stack
 			
-			CreateBTree(bTree, stack);							// Uses the stack to generate the Huffman Tree			
+			CreateBTree(bTree, stack);									// Uses the stack to generate the Huffman Tree			
 			EncodeInput(input.input, bTree);							// Uses the bTree to encode each input symbol
 			
 			for(Symbol i : input.input) {
-				System.out.println(i.symbol+": "+i.code+"("+i.probability+")");
+				System.out.println(i.symbol+": "+i.code+" ("+i.probability+")");
 			}
-		}
+			
+		System.out.println();
+		
+//		}
 		// extended Huffman
-		else if(menu == 2) {
+//		else if(menu == 2) {
 			extendedTable = new ArrayList<Symbol>();			// new extended frequency table
 			stack = new ArrayList<Symbol>();					// new stack list
 			bTree = new ArrayList<Symbol>();					// new bTree list
@@ -59,10 +57,11 @@ public class HuffmanCompression {
 			EncodeInput(extendedTable, bTree);
 			
 			for(Symbol i : extendedTable) {
-				System.out.println(i.symbol+": "+i.code+"("+i.probability+")");
+				System.out.println(i.symbol+": "+i.code+" ("+i.probability+")");
 			}
 
-		}
+
+//		}
 
 			
 		/****************************************
@@ -71,40 +70,25 @@ public class HuffmanCompression {
 			
 		Analysis comparing = new Analysis();
 		
+		System.out.println("\n\n\t\t::COMPARING::\n");
+		System.out.println("\t:INPUT:");
 		// 1st original input
+		System.out.println("Sentence: "+input.originInput);
 		comparing.calculateOriginalSize(input.input);
+		comparing.calculateEntropy(input.input);
 		
 		// Huffman
-		if (menu == 1)
+//		if (menu == 1)
+			System.out.println("\n\t:HUFFMAN:");
+			EncodeSentence(input.originInput, input.input);
 			comparing.calculateHuffmanSize(input.input);
+			comparing.averageLengths(input.input);
 		// Extended Huffman
-		if (menu == 2)
+//		if (menu == 2)
+			System.out.println("\n\t:EXTENDED HUFFMAN:");
+			EncodeExtSentence(input.originInput, extendedTable);
 			comparing.calculateExtHuffmanSize(input.originInput, extendedTable);
-	}
-
-		 
-	/* 
-	 * To capture "Symbols:frequency" from keyboard
-	 * return the string line from keyboard
-	 */
-	public static String CatchInput() {
-		String input = null;
-		BufferedReader in;
-		
-		System.out.println("Tell me the symbols and its frequencies:");
-		
-		in = new BufferedReader(new InputStreamReader(System.in));
-		
-		try {
-			input = in.readLine();
-		}
-		catch(Exception ex) {
-			System.out.println("Error");
-		}
-		
-		return input;
-	}
-	
+	}	
 	
 	/*
 	 * Create a frequency table based on input alphabet
@@ -286,6 +270,47 @@ public class HuffmanCompression {
 				extendedTable.add(extendedTable.size(), aux);
 			}
 		}
+	}
+	
+	/*
+	 * Encode the INPUT sentence using Huffman (no ext)
+	 */
+	public void EncodeSentence(String input, List<Symbol> list) {
+		String c;
+		String encodedSentence = "";
+		
+		for(int i = 0; i < input.length(); i++) {
+			c = input.charAt(i)+"";
+			
+			for(Symbol j : list) {
+				if(c.equals(j.symbol)) {
+					encodedSentence = encodedSentence + j.code;
+					break;
+				}
+			}
+		}
+		
+		System.out.println("Coded sentence: "+encodedSentence);
+	}
+	/*
+	 * Encode the INPUT sentence using Extended Huffman
+	 */
+	public void EncodeExtSentence(String input, List<Symbol> list) {
+		String doubleChars;
+		String encodedSentence = "";
+		
+		for(int i = 0; i < input.length(); i = i + 2) {
+			doubleChars = input.charAt(i)+""+input.charAt(i + 1);
+			
+			for(Symbol j : list) {
+				if(doubleChars.equals(j.symbol)) {
+					encodedSentence = encodedSentence + j.code;
+					break;
+				}
+			}
+		}
+		
+		System.out.println("Coded sentence: "+encodedSentence);
 	}
 
 	public static void main(String[] args) {

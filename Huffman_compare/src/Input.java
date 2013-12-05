@@ -14,6 +14,9 @@ public class Input {
 		input = new ArrayList<Symbol>(HandlesOriginalInput(originInput));
 	}
 	
+	/* 
+	 * To capture a sentence to encoded 
+	 */
 	public static String CatchInput() {
 		String input = null;
 		BufferedReader in;
@@ -27,6 +30,11 @@ public class Input {
 		}
 		catch(Exception ex) {
 			System.out.println("Error");
+		}
+		
+		// IMPORTANT! Here guarantee that the input is always pair
+		if(input.length() % 2 != 0) {
+			input = input + " ";
 		}
 		
 		return input;

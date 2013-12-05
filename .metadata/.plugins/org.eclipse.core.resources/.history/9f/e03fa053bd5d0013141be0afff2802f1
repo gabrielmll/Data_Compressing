@@ -1,0 +1,70 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Input {
+	String originInput;
+	List<Symbol> input;
+	
+	Input() {
+		
+		originInput = CatchInput();
+		
+		input = new ArrayList<Symbol>(HandlesOriginalInput(originInput));
+	}
+	
+	public static String CatchInput() {
+		String input = null;
+		BufferedReader in;
+		
+		System.out.println("Write a something to be compressed:");
+		
+		in = new BufferedReader(new InputStreamReader(System.in));
+		
+		try {
+			input = in.readLine();
+		}
+		catch(Exception ex) {
+			System.out.println("Error");
+		}
+		
+		if(input.length() % 2 != 0) {
+			input = input + " ";
+		}
+		
+		return input;
+	}
+	
+	public static int CheckCinList(char c, List<Symbol> list) {
+		int pos = -1;				// if 'c' is in 'list', 'pos' will save its position, if else, return -1;
+		
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).symbol.equals(String.valueOf(c))) {
+				pos = i;
+			}
+		}
+		
+		return pos;
+	}
+	
+	public static List<Symbol> HandlesOriginalInput(String original) {
+		List<Symbol> treaty = new ArrayList<Symbol>();
+		Symbol aux;
+		int i;
+		
+		
+		for (char c : original.toCharArray()) {
+			i = CheckCinList(c, treaty);
+			
+			if (i != -1) {
+				treaty.get(i).frequency++;
+			} else {
+				aux = new Symbol(String.valueOf(c), 1, 0);
+				treaty.add(aux);
+			}
+		}
+		
+		return treaty;
+	}
+}
