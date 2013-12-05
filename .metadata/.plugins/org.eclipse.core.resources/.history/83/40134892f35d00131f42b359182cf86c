@@ -1,0 +1,86 @@
+import java.lang.*;
+import java.io.*;
+// Modify the display content to suit your purposes...
+class menu {
+	private static final String TITLE =
+		"\n2910325 Data Compression coursework\n"+
+		" by firstname-FAMILYNAME_SRN\n\n"+
+		"\t********************\n"+
+		"\tDeclaration: Sorry but part of the program was copied from the Internet! \n" +
+		"\t1. Huffman Code \n"+
+		"\t2. Huffman Code with Analysis \n"+
+		"\t3. Extended Huffman Code \n"+
+		"\t4. Extended Huffman Code with Analysis\n"+
+		"\t5. Both Algorithms without Analysis\n"+
+		"\t6. Both Algorithms with Analysis\n"+
+		"\t0. Exit \n"+
+		"\t********************\n"+
+		"Please input a single digit (0-6):\n";
+
+	menu() {
+		int selected=-1;
+		
+		while (selected!=0) {
+			System.out.println(TITLE);
+			BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+
+			// selected = Integer.parseInt(in.readLine());
+			try {
+				selected = Integer.parseInt(in.readLine());
+				switch(selected) {
+					case 1: HuffmanCompression.main(1);
+					break;
+					case 2: HuffmanCompression.main(2);
+					break;
+					case 3: HuffmanCompression.main(3);
+					break;
+					case 4: HuffmanCompression.main(4);
+					break;
+					case 5: HuffmanCompression.main(5);
+					break;
+					case 6: HuffmanCompression.main(6);
+					break;
+				}
+			}
+			catch(Exception ex) {}
+			
+			System.out.println("\nPress ENTER to go back to menu!\n");
+			pause();
+
+
+		} // end while
+		System.out.println("Bye!");
+	}
+	
+	// Modify the types of the methods to suit your purposes...
+	private void q1() {
+		System.out.println("in q1");
+	}
+	
+	private void q2() {
+		System.out.println("in q2");
+	}
+	
+	private int q3() {
+		System.out.println("in q3");
+		return 1;
+	}
+	
+	private boolean q4() {
+		System.out.println("in q4");
+		return true;
+	}
+	
+	public static void pause() {  
+		try {  
+		        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));  
+		        System.out.println("pressione qualquer tecla para continuar");  
+		         in.readLine();  
+		    } catch (IOException e) {  
+		    }  
+		}  
+	
+	public static void main(String[] args) {
+		new menu();
+	}
+}

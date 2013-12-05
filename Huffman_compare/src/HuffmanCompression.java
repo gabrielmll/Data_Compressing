@@ -25,7 +25,7 @@ public class HuffmanCompression {
 		CreateProbability(input.input);						// Generate the probabilities of each symbol
 		
 		// Huffman
-//			if(menu == 1) {
+		if((menu == 1) || (menu == 2) || (menu == 5) || (menu == 6)) {
 			frequencyTable = new ArrayList<Symbol>(input.input);		// copy of input as frequencyTable
 			stack = new ArrayList<Symbol>();							// new stack list
 			bTree = new ArrayList<Symbol>();							// new bTree list
@@ -35,15 +35,13 @@ public class HuffmanCompression {
 			CreateBTree(bTree, stack);									// Uses the stack to generate the Huffman Tree			
 			EncodeInput(input.input, bTree);							// Uses the bTree to encode each input symbol
 			
+			System.out.println("\nGenerated code by Huffman:");
 			for(Symbol i : input.input) {
 				System.out.println(i.symbol+": "+i.code+" ("+i.probability+")");
 			}
-			
-		System.out.println();
-		
-//		}
+		}
 		// extended Huffman
-//		else if(menu == 2) {
+		if((menu == 3) || (menu == 4) || (menu == 5) || (menu == 6)) {
 			extendedTable = new ArrayList<Symbol>();			// new extended frequency table
 			stack = new ArrayList<Symbol>();					// new stack list
 			bTree = new ArrayList<Symbol>();					// new bTree list
@@ -56,43 +54,69 @@ public class HuffmanCompression {
 			CreateBTree(bTree, stack);
 			EncodeInput(extendedTable, bTree);
 			
+			System.out.println("\nGenerated code by Extended Huffman:");
 			for(Symbol i : extendedTable) {
 				System.out.println(i.symbol+": "+i.code+" ("+i.probability+")");
 			}
 
 
-//		}
+		}
 
 			
 		/****************************************
-		 * Compare Huffman and Extended Huffman
+		 * print Code and Analysis AREA
 		 ***************************************/
-			
+		System.out.println();
+		
 		Analysis comparing = new Analysis();
 		
-		System.out.println("\n\n\t\t::COMPARING::\n");
-		System.out.println("\t:INPUT:");
-		// 1st original input
-		System.out.println("Sentence: "+input.originInput);
-		comparing.calculateOriginalSize(input.input);
-		comparing.calculateEntropy(input.input);
+		if (menu == 1) {
+			System.out.println("Input sentence: "+input.originInput);
+			input.HuffmanCode = EncodeSentence(input.originInput, input.input);
+			System.out.println("Huffman encoded sentence: "+input.HuffmanCode);
+		}
+		else if (menu == 3) {
+			System.out.println("Input sentence: "+input.originInput);
+			input.ExtHuffmanCode = EncodeExtSentence(input.originInput, extendedTable);
+			System.out.println("Extended Huffman encoded sentence: "+input.ExtHuffmanCode);
+		}
+		else if (menu == 5) {
+			System.out.println("Input sentence: "+input.originInput);
+			input.HuffmanCode = EncodeSentence(input.originInput, input.input);
+			System.out.println("Huffman encoded sentence: "+input.HuffmanCode);
+			input.ExtHuffmanCode = EncodeExtSentence(input.originInput, extendedTable);
+			System.out.println("Extended Huffman encoded sentence: "+input.ExtHuffmanCode);
+		}
+		
+		if ((menu == 2) || (menu == 4) || (menu == 6)) {	
+
+			
+			System.out.println("\n\n\t\t::ANALYSIS::\n");
+			System.out.println("\t:INPUT:");
+			// 1st original input
+			System.out.println("Sentence: "+input.originInput);
+			comparing.calculateOriginalSize(input.input);
+			comparing.calculateEntropy(input.input);
+		}
 		
 		// Huffman
-//		if (menu == 1)
+		if ((menu == 2) || (menu == 6)) {
 			System.out.println("\n\t:HUFFMAN:");
 			input.HuffmanCode = EncodeSentence(input.originInput, input.input);
 			System.out.println("Coded sentence: "+input.HuffmanCode);
 			comparing.calculateHuffmanSize(input.input);
 			comparing.savingBitsHuff();
 			comparing.averageLengths(input.input);
+		}
 		// Extended Huffman
-//		if (menu == 2)
+		if ((menu == 4) || (menu == 6)) {
 			System.out.println("\n\t:EXTENDED HUFFMAN:");
 			input.ExtHuffmanCode = EncodeExtSentence(input.originInput, extendedTable);
 			System.out.println("Coded sentence: "+input.ExtHuffmanCode);
 			comparing.calculateExtHuffmanSize(input.ExtHuffmanCode);
 			comparing.savingBitsExtHuff();
 			comparing.averageExtLengths(extendedTable);
+		}
 	}	
 	
 	/*
@@ -318,8 +342,8 @@ public class HuffmanCompression {
 		return encodedSentence;
 	}
 
-	public static void main(String[] args) {
-		new HuffmanCompression(1);
+	public static void main(int menu) {
+		new HuffmanCompression(menu);
 	}
 }
 
