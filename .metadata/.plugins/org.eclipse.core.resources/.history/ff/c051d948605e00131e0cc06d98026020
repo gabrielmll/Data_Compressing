@@ -117,16 +117,16 @@ public class Analysis {
 	public void codingEfficiency() {
 		float efficiency;
 		
-		efficiency = (entropy / HuffAvgLength) * 100;
+		efficiency = entropy / HuffAvgLength;
 		
-		System.out.println("Coding efficiency: "+efficiency+"%");
+		System.out.println("Coding efficiency: "+efficiency);
 	}
 	
 	public void codingExtEfficiency() {
 		float efficiency;
 		
-		efficiency = (entropy / extHuffAvgLength) * 100;
+		efficiency = entropy / extHuffAvgLength;
 		
-		System.out.println("Coding efficiency: "+efficiency+"%");
+		System.out.println("Coding efficiency: "+efficiency);
 	}
 }

@@ -18,12 +18,10 @@ class menu {
 		"\t********************\n"+
 		"Please input a single digit (0-6):\n";
 	
-	private static final String EXPLANATIONS =
-			"----------------------------------------------------\n"+
+	private static final String EXPLANATIONS = 
 			"\nDATA COMPRESSION coursework - 2013 - GOLDSMITHS\n"+
 			"\tby Gabriel Pires e Albuquerque de Mello\n"+
-			"\tProfessor: Ida Mengyi Pu\n"+
-			"----------------------------------------------------\n\n"+
+			"\tProfessor: Ida Mengyi Pu\n\n"+
 			"The purpose of this program is to compare Huffman Compression coding\n"+
 			"and its Extension.\n"+
 			"";

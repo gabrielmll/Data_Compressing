@@ -127,6 +127,6 @@ public class Analysis {
 		
 		efficiency = (entropy / extHuffAvgLength) * 100;
 		
-		System.out.println("Coding efficiency: "+efficiency+"%");
+		System.out.println("Coding efficiency: "+efficiency)+"%";
 	}
 }

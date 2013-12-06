@@ -107,7 +107,6 @@ public class HuffmanCompression {
 			comparing.calculateHuffmanSize(input.input);
 			comparing.savingBitsHuff();
 			comparing.averageLengths(input.input);
-			comparing.codingEfficiency();
 		}
 		// Extended Huffman
 		if ((menu == 4) || (menu == 6)) {
@@ -117,7 +116,6 @@ public class HuffmanCompression {
 			comparing.calculateExtHuffmanSize(input.ExtHuffmanCode);
 			comparing.savingBitsExtHuff();
 			comparing.averageExtLengths(extendedTable);
-			comparing.codingExtEfficiency();
 		}
 	}	
 	

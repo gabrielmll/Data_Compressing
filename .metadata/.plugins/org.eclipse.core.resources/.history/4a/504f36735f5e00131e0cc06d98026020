@@ -6,8 +6,6 @@ public class Analysis {
 	float huffmanSize = 0;
 	float extHuffmanSize = 0;
 	float entropy = 0;
-	float HuffAvgLength = 0;
-	float extHuffAvgLength = 0;
 	
 	public void calculateOriginalSize(List<Symbol> input) {
 		int size = 0;
@@ -50,7 +48,7 @@ public class Analysis {
 		H = -H;
 		
 		System.out.println("Entropy: "+H);
-		entropy = (float)H;
+		entropy = H;
 	}
 	
 	/*
@@ -66,8 +64,6 @@ public class Analysis {
 		}
 		
 		System.out.println("Average length: "+length);
-		
-		HuffAvgLength = length;
 	}
 	
 	/*
@@ -84,8 +80,6 @@ public class Analysis {
 		length = length / 2;
 		
 		System.out.println("Average length: "+length);
-		
-		extHuffAvgLength = length;
 	}
 	
 	/*
@@ -112,21 +106,5 @@ public class Analysis {
 		percentage = 100 * (saving / originalSize);
 		
 		System.out.println("Saving bits: "+saving+" ("+percentage+"%)");
-	}
-	
-	public void codingEfficiency() {
-		float efficiency;
-		
-		efficiency = (entropy / HuffAvgLength) * 100;
-		
-		System.out.println("Coding efficiency: "+efficiency+"%");
-	}
-	
-	public void codingExtEfficiency() {
-		float efficiency;
-		
-		efficiency = (entropy / extHuffAvgLength) * 100;
-		
-		System.out.println("Coding efficiency: "+efficiency+"%");
 	}
 }

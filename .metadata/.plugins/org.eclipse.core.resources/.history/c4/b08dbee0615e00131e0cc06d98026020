@@ -13,20 +13,12 @@ class menu {
 		"\t4. Extended Huffman Code with Analysis\n"+
 		"\t5. Both Algorithms without Analysis\n"+
 		"\t6. Both Algorithms with Analysis\n"+
-		"\n\t9. For EXPLANATIONS\n"+
 		"\t0. Exit \n"+
 		"\t********************\n"+
 		"Please input a single digit (0-6):\n";
 	
-	private static final String EXPLANATIONS =
-			"----------------------------------------------------\n"+
-			"\nDATA COMPRESSION coursework - 2013 - GOLDSMITHS\n"+
-			"\tby Gabriel Pires e Albuquerque de Mello\n"+
-			"\tProfessor: Ida Mengyi Pu\n"+
-			"----------------------------------------------------\n\n"+
-			"The purpose of this program is to compare Huffman Compression coding\n"+
-			"and its Extension.\n"+
-			"";
+	private static final String EXPLANATIONS = 
+			"\nTeste legal";
 
 	menu() {
 		int selected=-1;
@@ -50,8 +42,6 @@ class menu {
 					case 5: q5();
 					break;
 					case 6: q6();
-					break;
-					case 9: System.out.println(EXPLANATIONS);
 					break;
 				}
 			}
