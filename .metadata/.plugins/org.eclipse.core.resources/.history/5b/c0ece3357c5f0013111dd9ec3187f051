@@ -12,7 +12,8 @@ class menu {
 		"\t4. Extended Huffman Code with Analysis\n"+
 		"\t5. Both Algorithms without Analysis\n"+
 		"\t6. Both Algorithms with Analysis\n"+
-		"\n\t0. Exit \n"+
+		"\n\t9. For EXPLANATIONS\n"+
+		"\t0. Exit \n"+
 		"\t********************\n"+
 		"Please input a single digit (0-6):\n";
 	

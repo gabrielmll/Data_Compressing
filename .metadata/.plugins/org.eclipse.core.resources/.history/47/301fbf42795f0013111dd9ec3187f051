@@ -19,7 +19,7 @@ public class HuffmanCompression {
 
 		Input input = new Input();							// Collect input from keyboard. The input will ALWAYS have pair length (odd are increase with " ")
 
-		Collections.sort(input.input);						// Sort the input - merge sort
+		Collections.sort(input.input);						// Sort the input
 		CreateProbability(input.input);						// Generate the probabilities of each symbol
 		
 		// Huffman

@@ -19,7 +19,7 @@ public class HuffmanCompression {
 
 		Input input = new Input();							// Collect input from keyboard. The input will ALWAYS have pair length (odd are increase with " ")
 
-		Collections.sort(input.input);						// Sort the input - merge sort
+		Collections.sort(input.input);						// Sort the input
 		CreateProbability(input.input);						// Generate the probabilities of each symbol
 		
 		// Huffman
@@ -356,10 +356,10 @@ public class HuffmanCompression {
  */
 class Symbol implements Comparable<Symbol> {
 	
-	String symbol = null;			// the data symbol itself
-	int frequency = 0;				// amount of times this symbol appears
-	String code = null;				// encoded symbol (allocated in the huffman or ext huffman)
-	float probability = 0;			// probability = ( frequency / total_sybols_in_data )
+	String symbol = null;
+	int frequency = 0;
+	String code = null;
+	float probability = 0;
 	
 	public Symbol(String symbol, int frequency, float probability) {
 		this.symbol = symbol;
